@@ -26,10 +26,12 @@ require('packer').startup(function()
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'windwp/nvim-ts-autotag'
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
+  use 'windwp/nvim-autopairs'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
   use { 'hoob3rt/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 end)
@@ -69,11 +71,19 @@ vim.cmd [[colorscheme everforest]]
 
 --statusline
 require'lualine'.setup {
-  options = { theme = 'everforest' },
+  options = { 
+    theme = 'everforest',
+    icons_enabled = 1
+  },
   tabline = {
     lualine_a = {},
     lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_c = {
+      {
+        'filename',
+        path = 1
+      }
+    },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
@@ -140,6 +150,9 @@ vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
   highlight = {
+    enable = true, -- false will disable the whole extension
+  },
+  autotag = {
     enable = true, -- false will disable the whole extension
   },
   incremental_selection = {
@@ -221,7 +234,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'hls', 'cssls', 'html', 'svelte' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'hls', 'cssls', 'html', 'svelte', 'tailwindcss' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -239,6 +252,9 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- luasnip setup
 local luasnip = require 'luasnip'
+
+--autopairs setup
+require('nvim-autopairs').setup{}
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
