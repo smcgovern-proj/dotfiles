@@ -33,7 +33,8 @@ require('packer').startup(function()
   use 'saadparwaiz1/cmp_luasnip'
   use 'windwp/nvim-autopairs'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
-  use { 'hoob3rt/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use 'fatih/vim-go'
 end)
 
 --Set highlight on search
