@@ -63,7 +63,7 @@ vim.o.smartcase = true
 
 --Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'number'
+vim.wo.signcolumn = 'yes:1'
 
 --colorscheme
 vim.o.termguicolors = true
