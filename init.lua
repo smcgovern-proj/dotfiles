@@ -20,8 +20,9 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
   use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
   use 'tpope/vim-vinegar' -- upgrades to netrw
-  use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
-  use 'sainnhe/everforest' --color scheme
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } } }
+  -- use 'sainnhe/everforest' --color scheme
+  use 'monsonjeremy/onedark.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   use 'nvim-treesitter/nvim-treesitter'
@@ -67,13 +68,13 @@ vim.wo.signcolumn = 'yes:1'
 
 --colorscheme
 vim.o.termguicolors = true
-vim.g.everforest_terminal_italics = 2
-vim.cmd [[colorscheme everforest]]
+-- vim.g.everforest_terminal_italics = 2
+vim.cmd [[colorscheme onedark]]
 
 --statusline
 require'lualine'.setup {
   options = { 
-    theme = 'everforest',
+    theme = 'onedark',
     icons_enabled = 1
   },
   tabline = {
@@ -235,7 +236,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'hls', 'cssls', 'html', 'svelte', 'tailwindcss' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'hls', 'cssls', 'html' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
