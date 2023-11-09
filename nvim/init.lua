@@ -112,7 +112,7 @@ require('lazy').setup({
     priority = 1000,
     name = 'catppuccin',
     config = function()
-      vim.cmd.colorscheme 'catppuccin-latte'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
 
@@ -412,7 +412,7 @@ end
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   -- gopls = {},
   pyright = {},
   rust_analyzer = {},

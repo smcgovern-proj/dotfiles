@@ -10,7 +10,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 -- This is where you actually apply your config choices
-config.color_scheme = "Catppuccin Latte"
+config.color_scheme = "Catppuccin Mocha"
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 --   -- and finally, return the configuration to wezterm
